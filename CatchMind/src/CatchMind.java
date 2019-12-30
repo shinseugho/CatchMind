@@ -6,6 +6,7 @@ public class CatchMind {
 		System.out.println("hello");
 		System.out.println("hi, catchmind");
 		System.out.println("hello, catchmind");
+		System.out.println("finish");
 	}
 
 }
