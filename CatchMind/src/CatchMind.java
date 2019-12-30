@@ -5,6 +5,7 @@ public class CatchMind {
 		// TODO Auto-generated method stub
 		System.out.println("hello");
 		System.out.println("hi, catchmind");
+		System.out.println("hello, catchmind");
 	}
 
 }
