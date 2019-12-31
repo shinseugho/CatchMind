@@ -18,6 +18,7 @@ public class MyTimer extends JProgressBar{
 	}
 	
 	void start() {
+		
 		Runnable runnable = new Runnable() {
 			
 			@Override
@@ -26,6 +27,7 @@ public class MyTimer extends JProgressBar{
 				timeBar.setValue(timeBar.getValue()-1);
 			}
 		};
+		
 		ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 		service.scheduleAtFixedRate(runnable, 1, 1, TimeUnit.SECONDS);
 	   }

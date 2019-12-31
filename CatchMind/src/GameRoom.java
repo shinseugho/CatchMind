@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -17,10 +18,14 @@ public class GameRoom extends JPanel {
 	GameRoom(){
 		setLayout(null);
 		
+		Font font = new Font(getName(), Font.BOLD, 20);
+		
 		for(int i=0; i<6; i++) {
 			userChat[i] = new JTextField();
 			userChat[i].setBounds(0,0,0,0);
-			userChat[i].setBackground(Color.gray);
+			userChat[i].setBackground(Color.lightGray);
+			userChat[i].setHorizontalAlignment(JTextField.CENTER);
+			userChat[i].setFont(font);
 			add(userChat[i]);
 		}
 		
