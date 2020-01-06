@@ -19,7 +19,7 @@ public class WaitingRoomForm implements UserForm{
 		this.displayThread = dt;
 		
 		jpanel = new JPanel();
-		jpanel.setBackground(Color.RED);
+		jpanel.setBackground(Color.lightGray);
 		
 		JButton btn = new JButton("로그인으로");
 		jpanel.add(btn);
@@ -31,6 +31,19 @@ public class WaitingRoomForm implements UserForm{
 				displayThread.getCardLayout().show(
 						displayThread.getContentPane(), "login");
 				
+			}
+		});
+		
+		JButton btn2 = new JButton("방들어가기");
+		jpanel.add(btn2);
+		btn2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				displayThread.setBounds(300, 0, 1446, 824);
+				displayThread.getCardLayout().show(displayThread.getContentPane(),
+						"gameRoom");
 			}
 		});
 	}
