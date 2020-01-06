@@ -6,7 +6,7 @@ public class GameRoomForm implements UserForm{
 	
 	@Override
 	public void display() {
-		System.out.println("hello");
+		System.out.println("hi");
 	}
 
 	@Override
