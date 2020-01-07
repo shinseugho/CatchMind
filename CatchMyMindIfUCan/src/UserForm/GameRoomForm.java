@@ -2,6 +2,8 @@ package UserForm;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.Socket;
 
 import javax.swing.JButton;
@@ -35,16 +37,18 @@ public class GameRoomForm implements UserForm{
 		JPanel grSketch = new JPanel();
 		JPanel[] userPanel = new JPanel[6];
 		JPanel exp = new JPanel();
-		JPanel timer = new JPanel();
+		JPanel timerPanel = new JPanel();
 		JPanel turn = new JPanel();
 		JPanel answer = new JPanel();
 		JPanel round = new JPanel();
 		JButton b1,b2,b3,b4;
-		JTextField tf;
+		JTextField chatBar;
+		
+		TimeBar timeBar = new TimeBar(120);
 		
 		grp.setLayout(null);
 		
-		tf=new JTextField();
+		chatBar=new JTextField();
 		b1=new JButton("게임준비");
 		b2=new JButton("게임초대");
 		b3=new JButton("친구추가");
@@ -70,9 +74,9 @@ public class GameRoomForm implements UserForm{
 		}
 		
 		//3.라운드표시기
-		timer.setBounds(15, 630, 250, 150);
-		timer.setBackground(Color.gray);
-		grp.add(timer);
+		round.setBounds(15, 630, 250, 150);
+		round.setBackground(Color.blue);
+		grp.add(round);
 		
 		//4.차례표시기
 		turn.setBounds(280, 630, 250, 105);
@@ -85,13 +89,15 @@ public class GameRoomForm implements UserForm{
 		grp.add(answer);
 		
 		//7.타이머		
-		round.setBounds(810, 630, 350, 70);
-		round.setBackground(Color.blue);
-		grp.add(round);
+		timerPanel.setBounds(810, 630, 350, 70);
+		timerPanel.setLayout(null);
+		timerPanel.setBackground(Color.gray);
+		timerPanel.add(timeBar);
+		grp.add(timerPanel);
 		
 		//6.채팅		
-		tf.setBounds(810, 710, 350, 30);
-		grp.add(tf);
+		chatBar.setBounds(810, 710, 350, 30);
+		grp.add(chatBar);
 				
 		//8.경험치바
 		exp.setBounds(280, 750, 880, 30);
@@ -109,13 +115,32 @@ public class GameRoomForm implements UserForm{
 		p.setLayout(new GridLayout(4,1,0,10));
 		p.add(b1);p.add(b2); p.add(b3); p.add(b4);
 		  //b1. 게임준비
-		  b1.setBackground(Color.white); 
+		  b1.setBackground(Color.white);
+		  b1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Thread t = new Thread(timeBar);
+				t.start();
+			}
+		});
 		  //b2. 게임초대
 		  b2.setBackground(Color.white); 
 		  //b3. 친구추가
 		  b3.setBackground(Color.white); 
 		  //b4. 나가기
-		  b4.setBackground(Color.white); 
+		  b4.setBackground(Color.white);
+		  b4.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					displayThread.setBounds(300, 0, 1440, 900);
+					displayThread.getCardLayout().show(displayThread.getContentPane(),
+							"waitingRoom");
+				}
+			});
 		  
 		/* //1줄표시(위치)
 		 * p.setBounds(671, 625, 500, 30);

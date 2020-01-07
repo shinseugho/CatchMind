@@ -46,6 +46,7 @@ public class WaitingRoomForm implements UserForm{
 						"gameRoom");
 			}
 		});
+		
 	}
 	
 	public static WaitingRoomForm getInstance(DisplayThread dt) {

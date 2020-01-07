@@ -43,6 +43,7 @@ public class DisplayThread extends JFrame implements Runnable{
 		//position and size ( 360, 640 )
 		Dimension screenSize = getToolkit().getScreenSize();
 		setSize(WIDTH, HEIGHT);
+		setResizable(false);
 		setBounds((screenSize.width - getSize().width)/2, (screenSize.height - getSize().height)/2,
 				getSize().width, getSize().height);
 		
