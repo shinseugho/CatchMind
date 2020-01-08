@@ -42,13 +42,11 @@ public class GameRoomForm implements UserForm{
 		JPanel answer = new JPanel();
 		JPanel round = new JPanel();
 		JButton b1,b2,b3,b4;
-		JTextField chatBar;
-		
+		JTextField chatBar=new JTextField();
 		TimeBar timeBar = new TimeBar(120);
 		
 		grp.setLayout(null);
 		
-		chatBar=new JTextField();
 		b1=new JButton("게임준비");
 		b2=new JButton("게임초대");
 		b3=new JButton("친구추가");
