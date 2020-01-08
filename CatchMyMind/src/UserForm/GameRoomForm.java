@@ -3,6 +3,8 @@ package UserForm;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.Socket;
 
 import javax.swing.JButton;
@@ -47,6 +49,7 @@ public class GameRoomForm implements UserForm{
 		Label[] label = new Label[24];	
 		JTextField tf;
 		JProgressBar jb;
+		TimeBar timeBar = new TimeBar(120);
 		
 		grp.setLayout(null);
 		
@@ -103,7 +106,9 @@ public class GameRoomForm implements UserForm{
 		
 		//7.타이머		
 		round.setBounds(810, 630, 350, 70);
+		round.setLayout(null);
 		round.setBackground(Color.blue);
+		round.add(timeBar);
 		grp.add(round);
 		
 		//6.채팅		
@@ -177,6 +182,18 @@ public class GameRoomForm implements UserForm{
 					label[18+i].setBackground(Color.white);
 					userPanel[i].add(label[18+i]);
 				}
+				
+		//b[0]. 게임준비 액션
+		b[0].setBackground(Color.white);
+		b[0].addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Thread t = new Thread(timeBar);
+				t.start();
+			}
+		});
 		
 		displayThread.add(grp);
 	}
