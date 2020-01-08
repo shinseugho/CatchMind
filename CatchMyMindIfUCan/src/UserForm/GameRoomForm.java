@@ -23,11 +23,11 @@ public class GameRoomForm implements UserForm{
 	private UserMessageProcessor userMessageProcessor;	// message를 json으로 변환시켜주는 클래스
 	private DisplayThread displayThread;				// jframe의 컨테이너, 우리가 만든 gameroom panel을 여기에 add
 	private Socket socket;								// 통신 소켓
-	private UserInputThread unt;						// message를 서버로 보내는 thread
+	private UserInputThread userInputThread;			// message를 서버로 보내는 thread
 	
 	private GameRoomForm(DisplayThread ds, Socket socket) {
 		this.socket = socket;
-		unt = UserInputThread.getInstance(socket);
+		userInputThread = UserInputThread.getInstance(socket);
 		userMessageProcessor = new UserMessageProcessor();
 		this.displayThread = ds;
 		
