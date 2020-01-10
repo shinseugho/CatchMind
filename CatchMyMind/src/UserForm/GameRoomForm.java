@@ -19,6 +19,7 @@ import Client.UserMessageProcessor;
 public class GameRoomForm implements UserForm{
 	
 	private JPanel grp;
+	int userNum = 0;
 	
 	private volatile static GameRoomForm uniqueInstance; 
 	
@@ -26,6 +27,7 @@ public class GameRoomForm implements UserForm{
 	private DisplayThread displayThread;				// jframe의 컨테이너, 우리가 만든 gameroom panel을 여기에 add
 	private Socket socket;								// 통신 소켓
 	private UserInputThread unt;						// message를 서버로 보내는 thread
+	public UserChat[] userChat = new UserChat[6];
 	
 	private GameRoomForm(DisplayThread ds, Socket socket) {
 		this.socket = socket;
@@ -68,6 +70,11 @@ public class GameRoomForm implements UserForm{
 		 * b4=new JButton("나가기");
 		 */
 		
+		for(int i=0; i<6; i++) {
+			userChat[i] = new UserChat(i);
+			grp.add(userChat[i]);
+		}
+		
 		//1. 스케치북		
 		grSketch.setBounds(280, 15, 880, 600);
 		grSketch.setBackground(Color.BLACK);
@@ -109,10 +116,26 @@ public class GameRoomForm implements UserForm{
 		round.setLayout(null);
 		round.setBackground(Color.blue);
 		round.add(timeBar);
+		timeBar.setEnabled(true);
 		grp.add(round);
 		
-		//6.채팅		
+		//6.채팅
 		tf.setBounds(810, 710, 350, 30);
+		tf.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getSource()==tf) {
+					String message = tf.getText();
+					if(message.length()>10) {
+						message = message.substring(0, 10);
+					}
+					userChat[userNum].printChat(message);
+					tf.setText("");
+				}
+			}
+		});
 		grp.add(tf);
 				
 		//8.경험치바
